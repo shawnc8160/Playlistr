@@ -16,6 +16,13 @@ router.post('/', (req, res) => {
     }); 
 }); 
 
+//INDEX GET
+router.get('/', (req, res) => {
+    User.find({}, (err, allUser)=>{
+        res.json(allUser); 
+    }); 
+}); 
+
 //UPDATE USER
 router.put('/:id', (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedUser)=>{
