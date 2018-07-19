@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/loophalen/Project_3-#readme",
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.2.4"
   }

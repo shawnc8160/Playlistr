@@ -9,6 +9,10 @@ app.use(express.static("public"));
 //   res.send('index')
 // });
 
+//USER CONTROLLER
+const userController = require('./controllers/users.js'); 
+app.use('/users', userController); 
+
 app.listen(3000, () => {
   console.log('listening......');
 });
