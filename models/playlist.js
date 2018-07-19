@@ -4,9 +4,9 @@ const playlistSchema = mongoose.Schema({
   name: {type: String, required: true},
   tracks: [{
     title: String,
-    Artist: String,
-    Album: String,
-    Genre: String
+    artist: String,
+    album: String,
+    genre: String
   }],
   description: String,
   likes: {type: Number, default: 0},

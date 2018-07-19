@@ -12,6 +12,7 @@ router.post('/', (req, res) => {
     }
   });
 });
+// curl -X POST -H "Content-Type: application/json" -d '{"name":"TESTNAME2", "tracks":[{"title":"testTrack", "artist":"testArtist", "album":"testAlbum", "genre":"testGenre"}], "description":"test Description", "tags": ["TestTag1", "TestTag2"], "creator": "test Creator"}' http://localhost:3000/playlist/
 
 /* ---------------------
 Index (GET) Route
@@ -23,7 +24,7 @@ router.get('/', (req, res) => {
     }
   });
 });
-// curl http://localhost:3000/bookmarks
+// curl http://localhost:3000/playlist
 
 /* ---------------------
 Update (PUT) Route
@@ -35,7 +36,7 @@ router.put('/:id', (req, res) => {
     }
   });
 });
-// curl -X PUT -H "Content-Type: application/json" -d '{"title":"Moogle"}' http://localhost:3000/bookmarks/5b4d6594830af722cd91486e
+// curl -X PUT -H "Content-Type: application/json" -d '{"name":"Moogle"}' http://localhost:3000/playlist/<id goes here>
 
 /* ---------------------
 Delete Route
@@ -47,5 +48,5 @@ router.delete('/:id', (req, res) => {
     }
   });
 });
-// curl -X DELETE http://localhost:3000/bookmarks/5b4d6594830af722cd91486e
+// curl -X DELETE http://localhost:3000/playlist/<id goes here>
 module.exports = router;
