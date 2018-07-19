@@ -12,6 +12,9 @@ app.use(express.static("public"));
 //   res.send('index')
 // });
 
+//USER CONTROLLER
+const userController = require('./controllers/users.js'); 
+app.use('/users', userController); 
 const playlistController = require('./controllers/playlist.js');
 app.use('/playlist', playlistController);
 
