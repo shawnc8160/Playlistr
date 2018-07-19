@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -9,9 +12,14 @@ app.use(express.static("public"));
 //   res.send('index')
 // });
 
+<<<<<<< HEAD
 //USER CONTROLLER
 const userController = require('./controllers/users.js'); 
 app.use('/users', userController); 
+=======
+const playlistController = require('./controllers/playlist.js');
+app.use('/playlist', playlistController);
+>>>>>>> 4831f901f92bc864812003fa49201fe5682b8a4d
 
 app.listen(3000, () => {
   console.log('listening......');
