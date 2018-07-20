@@ -18,7 +18,7 @@ app.use(express.static("public"));
 const userController = require('./controllers/users.js');
 app.use('/users', userController);
 const playlistController = require('./controllers/playlist.js');
-app.use('/playlist', playlistController);
+app.use('/playlists', playlistController);
 
 app.listen(port, () => {
   console.log('listening......');
