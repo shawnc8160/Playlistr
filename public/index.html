@@ -31,6 +31,12 @@
         <input type="submit" value="Create Playlist" />
       </form>
 
+      <!-- playlist names listed -->
+      <div ng-repeat="playlist in ctrl.playlists">
+          <p>{{ playlist.name }}</p>
+          <button ng-click="editPlaylist(playlist)">Edit</button>
+    </div>
+
       <!-- search form -->
       <h2>Search for Artist or Tracks</h2>
       <form name="getMusic" ng-submit="ctrl.getMusic()">
