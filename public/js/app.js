@@ -52,15 +52,15 @@ app.controller('MainController', ['$http', function($http){
       url: '/playlist/' + playlist._id,
       // data: {
       //   tracks: [{
-      //     title: this.title,
-      //     artist: this.artist,
-      //     album: this.album,
-      //     genre: this.genre
+      //     title: this.updatedTitle,
+      //     artist: this.updatedArtist,
+      //     album: this.updatedAlbum,
+      //     genre: this.updatedGenre
       //   }],
-      //   description: this.description,
-      //   likes: {this.likes},
-      //   tags: [{this.tags}],
-      //   creator: this.creator
+      //   description: this.updatedDescription,
+      //   likes: {this.updatedLikes},
+      //   tags: [{this.updatedTags}],
+      //   creator: this.updatedCreator
       //
       // }
     }).then(response => {
