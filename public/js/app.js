@@ -7,6 +7,17 @@ app.controller('MainController', ['$http', function($http){
   this.newPlayListName = ''
 
   this.createForm = {}
+
+   // API CALL
+  this.baseURL = 'http://ws.audioscrobbler.com/2.0/?';
+  this.methodSearch = 'method=track.search';
+  this.methodInfo = 'method=track.getInfo';
+  this.apikey = '&api_key=' + '8e2f6f5f6da4114d76e92c9b03878d02';
+  this.format = '&format=json';
+
+  this.tracks = [];
+  this.foundMusic = null;
+
   this.createPlaylist = () => {
     console.log('Angular - Calling createPlayList');
     $http({
@@ -99,5 +110,35 @@ app.controller('MainController', ['$http', function($http){
       this.loggedIn = response.data.username
     })
   }
+
+  //API Functions
+  this.getMusic = () => {
+    $http({
+      method: 'GET',
+      url: this.baseURL + this.methodSearch + '&track=' + this.MusicTitle + this.apikey + this.format
+    }).then(response => {
+      console.log(response.data.results.trackmatches.track);
+      this.tracks = response.data.results.trackmatches.track;
+    }, error => {
+      console.error(error);
+    }).catch(err => console.error('Catch: ', err));
+  }
+
+  this.getTrackInfo = (title, artist) => {
+    let titleFormatted = title.split(' ').join('+');
+    let artistFormatted = artist.split(' ').join('+');
+    $http({
+      method: 'GET',
+      url: this.baseURL + this.methodInfo + this.apikey + "&artist=" + artistFormatted + '&track=' + titleFormatted + this.format
+    }).then(response => {
+      console.log(response.data.track);
+      this.foundMusic = response.data.track;
+    }, error => {
+      console.error(error);
+    }).catch(err => console.error('Catch: ', err));
+  }
+
+
+
   this.getPlaylist();
 }]);
