@@ -63,9 +63,19 @@ app.controller('MainController', ['$http', function($http){
     $http({
       method: 'PUT',
       url: '/playlist/' + playlist._id,
-      data: {
-
-      }
+      // data: {
+      //   tracks: [{
+      //     title: this.updatedTitle,
+      //     artist: this.updatedArtist,
+      //     album: this.updatedAlbum,
+      //     genre: this.updatedGenre
+      //   }],
+      //   description: this.updatedDescription,
+      //   likes: {this.updatedLikes},
+      //   tags: [{this.updatedTags}],
+      //   creator: this.updatedCreator
+      //
+      // }
     }).then(response => {
       console.log(response.data);
       this.getPlaylist();
