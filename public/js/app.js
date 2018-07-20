@@ -1,11 +1,13 @@
 const app = angular.module('MyApp', []);
 
 app.controller('MainController', ['$http', function($http){
+  /* ---------------------
+  Global variables
+   --------------------- */
   this.h1 = 'Playlist App'
-  this.playlist = ''
+  this.playlist = {}
   this.playlists = []
   this.newPlayListName = ''
-
   this.createForm = {}
 
    // API CALL
@@ -18,6 +20,10 @@ app.controller('MainController', ['$http', function($http){
   this.tracks = [];
   this.foundMusic = null;
 
+  /* ---------------------
+  Playlist functions
+   --------------------- */
+  // Makes HTTP request to create new playlist
   this.createPlaylist = () => {
     console.log('Angular - Calling createPlayList');
     $http({
@@ -33,6 +39,7 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  // Makes HTTP request to get all playlists
   this.getPlaylist = () => {
     $http({
       method: 'GET',
@@ -40,12 +47,12 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       console.log(response.data);
       this.playlists = response.data
-      this.playlist = this.playlists[0]
     }, error => {
       console.log(error);
     })
   }
 
+  // Makes HTTP request to delete playlist
   this.deletePlaylist = (id) => {
     $http({
       method: 'DELETE',
@@ -59,7 +66,9 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
-  this.updatePlaylist = () => {
+  // Makes HTTP request to add track to playlist
+  this.updatePlaylist = (track) => {
+    this.playlist.tracks.push(track);
     $http({
       method: 'PUT',
       url: '/playlist/' + playlist._id,
@@ -84,6 +93,9 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  /* ---------------------
+  User functions
+   --------------------- */
   this.createUser = () => {
     console.log('Angular calling createUser');
     $http({
