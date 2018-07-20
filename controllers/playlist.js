@@ -6,6 +6,7 @@ const Playlist = require('../models/playlist.js');
 Create (POST) Route
  --------------------- */
 router.post('/', (req, res) => {
+  console.log('Node Express - calling post route for playlist');
   Playlist.create(req.body, (err, result) => {
     if (!err) {
       res.json(result);

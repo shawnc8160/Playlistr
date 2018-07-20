@@ -4,9 +4,11 @@ app.controller('MainController', ['$http', function($http){
   this.h1 = 'Playlist App'
   this.playlist = ''
   this.playlists = []
+  this.newPlayListName = ''
 
   this.createForm = {}
   this.createPlaylist = () => {
+    console.log('Angular - Calling createPlayList');
     $http({
       method: 'POST',
       url: '/playlists',
@@ -14,7 +16,7 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       console.log(response.data);
       this.playlists.unshift(response.data);
-      this.createForm = {}
+      this.createForm = {};
     }, error => {
       console.log(error);
     })
@@ -72,6 +74,7 @@ app.controller('MainController', ['$http', function($http){
   }
 
   this.createUser = () => {
+    console.log('Angular calling createUser');
     $http({
       method: 'POST',
       url: '/users',
