@@ -96,11 +96,12 @@ app.controller('MainController', ['$http', function($http){
 
   // Remove Track from Playlist
   this.deleteTrack = (playlists_id, track_id) => {
-    const removeByIndex = this.playlist.tracks.findIndex(track => track._id === track._id)
+    const removeByIndex = this.playlist.tracks.findIndex(track => track._id === track_id)
     this.playlist.tracks.splice(removeByIndex, 1)
     $http({
       method:'PUT',
-      url: '/playlists/' + playlists_id
+      url: '/playlists/' + playlists_id,
+      data: this.playlist
     }).then((response) => {
       console.log(response)
       },
