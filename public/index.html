@@ -32,26 +32,33 @@
       </form>
 
       <!-- playlist names listed -->
-      <div ng-repeat="playlist in ctrl.playlists">
+      <div ng-repeat="playlist in ctrl.playlists" ng-if="!ctrl.addTrack">
           <p>{{ playlist.name }}</p>
-          <button ng-click="editPlaylist(playlist)">Edit</button>
-    </div>
-
-      <!-- search form -->
-      <h2>Search for Artist or Tracks</h2>
-      <form name="getMusic" ng-submit="ctrl.getMusic()">
-        <input type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle">
-        <button type="submit">Search</button>
-      </form> 
-
-      <!-- display track info -->
-      <div ng-repeat="track in ctrl.tracks">
-        <h2>
-          <a ng-click="ctrl.getTrackInfo(track.name, track.artist)">
-            {{ track.name }} by {{ track.artist }}
-          </a>
-        </h2>
+          <button ng-click="ctrl.editPlaylist(playlist)">Edit</button>
       </div>
+
+      <!-- Search for track div, only appears if user is adding a track to playlist -->
+      <div ng-if="ctrl.addTrack">
+        <!-- search form -->
+        <h2> Add track for {{ctrl.playlist.name}} </h2>
+        <button ng-click="ctrl.addTrack = false">Finished Editing</button>
+        <ul ng-repeat="track in ctrl.playlist.tracks">
+          <li>{{track.title}} by {{track.artist}}</li>
+        </ul>
+        <h2>Search for Artist or Tracks</h2>
+        <form name="getMusic" ng-submit="ctrl.getMusic()">
+          <input type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle">
+          <button type="submit">Search</button>
+        </form>
+        <!-- display track info -->
+        <div ng-repeat="track in ctrl.tracks">
+          <h2>
+            <button ng-click="ctrl.addTrackToPlaylist(track.name, track.artist)">Add to Playlist</button>
+            {{ track.name }} by {{ track.artist }}
+          </h2>
+        </div>
+      </div>
+
 
   </body>
 </html>
