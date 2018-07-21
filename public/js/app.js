@@ -49,7 +49,6 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       // console.log(response.data);
       this.playlists = response.data
-      console.log('var playlist is', this.playlists)
       this.playlist = this.playlists[0]
     }, error => {
       console.log(error);
