@@ -48,8 +48,13 @@ app.controller('MainController', ['$http', function($http){
       url: '/playlists',
     }).then(response => {
       // console.log(response.data);
+<<<<<<< HEAD
+      this.playlists = response.data  
+      // console.log('var playlist is', this.playlists)
+=======
       this.playlists = response.data
       console.log('var playlist is', this.playlists)
+>>>>>>> 557aed4ad922f2af8e2d0b2688f2af74ec924790
       this.playlist = this.playlists[0]
     }, error => {
       console.log(error);
