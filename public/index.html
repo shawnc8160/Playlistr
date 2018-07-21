@@ -27,8 +27,8 @@
       <!-- Login user -->
       <h2 ng-hide="ctrl.loggedIn">Login</h2>
       <form name="loginForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.logIn()">
-        <input type="text" placeholder="Username" ng-model="ctrl.username" />
-        <input type="password" placeholder="Password" ng-model="ctrl.password" />
+        <input type="text" placeholder="Username" ng-model="ctrl.loginUsername" />
+        <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
         <input type="submit" value="Login" />
       </form>
 
