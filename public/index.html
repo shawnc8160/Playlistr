@@ -45,10 +45,11 @@
       <div ng-if="ctrl.addTrack">
         <!-- search form -->
         <h2> Add track for {{ctrl.playlist.name}} </h2>
-        <button ng-click="ctrl.addTrack = false">Finished Editing</button>
         <ul ng-repeat="track in ctrl.playlist.tracks">
           <li>{{track.title}} by {{track.artist}}</li>
+          <button ng-click="ctrl.deleteTrack(ctrl.playlist._id, track_id)">Remove Track</button>
         </ul>
+        <button ng-click="ctrl.addTrack = false">Finished Editing</button>
         <h2>Search for Artist or Tracks</h2>
         <form name="getMusic" ng-submit="ctrl.getMusic()">
           <input type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle">
