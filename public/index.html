@@ -26,7 +26,7 @@
       </form>
 
      <h2>Create Playlist</h2>
-      <form ng-submit="ctrl.createPlaylist()">
+      <form ng-if="ctrl.loggedIn" ng-submit="ctrl.createPlaylist()">
         <input placeholder="Playlist Name" type="text" ng-model="ctrl.createForm.name" />
         <input type="submit" value="Create Playlist" />
       </form>
@@ -39,7 +39,7 @@
           <button ng-click="ctrl.deletePlaylist(playlist)">Delete</button>
       </div>
 
-    
+
 
       <!-- Search for track div, only appears if user is adding a track to playlist -->
       <div ng-if="ctrl.addTrack">
