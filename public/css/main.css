@@ -1,0 +1,23 @@
+.playlist_preview_container {
+  border: 1px solid grey;
+  padding: 10%;
+  display: flex;
+}
+
+.playlist_preview {
+  background: #efefef;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.playlist_preview > button {
+  width: 70px;
+  padding: 4px;
+}
+
+.playlist_preview > p {
+  padding: 10px;
+}

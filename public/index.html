@@ -2,11 +2,18 @@
 <html lang="en" dir="ltr" ng-app="MyApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Music App</title>
+    <!-- Import JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js" charset="utf-8"></script>
     <script src="/js/app.js" charset="utf-8"></script>
+    <!-- Linking CSS -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/main.css">
   </head>
   <body ng-controller="MainController as ctrl">
+    <div class="container">
+
       <h1>{{ctrl.h1}}</h1>
 
       <!-- create user -->
@@ -25,21 +32,28 @@
         <input type="submit" value="Login" />
       </form>
 
-     <h2>Create Playlist</h2>
-      <form ng-if="ctrl.loggedIn" ng-submit="ctrl.createPlaylist()">
-        <input placeholder="Playlist Name" type="text" ng-model="ctrl.createForm.name" />
-        <input type="submit" value="Create Playlist" />
-      </form>
-
-      <!-- playlist names listed -->
-      <div ng-repeat="playlist in ctrl.playlists" ng-if="!ctrl.addTrack">
-          <p>{{ playlist.name }}</p>
-          <button ng-click="ctrl.editPlaylist(playlist)">Edit</button>
-          <!-- delete -->
-          <button ng-click="ctrl.deletePlaylist(playlist)">Delete</button>
+      <!-- Create Playlist Section -->
+      <div class="create_playlist" ng-if="ctrl.loggedIn">
+        <h2>Create Playlist</h2>
+        <form ng-submit="ctrl.createPlaylist()">
+          <input placeholder="Playlist Name" type="text" ng-model="ctrl.createForm.name" />
+          <input type="submit" value="Create Playlist" />
+        </form>
       </div>
 
-
+      <!-- Creates List of All Playlist -->
+      <div ng-if="!ctrl.addTrack">
+        <h2>All Playlists</h2>
+        <div class="playlist_preview_container">
+          <div class="playlist_preview" ng-repeat="playlist in ctrl.playlists">
+            <img src="{{playlist.tracks[0].image[1]['#text']}}" alt="">
+            <p>{{ playlist.name }}</p>
+            <button ng-click="ctrl.editPlaylist(playlist)">Edit</button>
+            <!-- delete -->
+            <button ng-click="ctrl.deletePlaylist(playlist)">Delete</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Search for track div, only appears if user is adding a track to playlist -->
       <div ng-if="ctrl.addTrack">
@@ -58,12 +72,12 @@
         <!-- display track info -->
         <div ng-repeat="track in ctrl.tracks">
           <h2>
-            <button ng-click="ctrl.addTrackToPlaylist(track.name, track.artist)">Add to Playlist</button>
+            <button ng-click="ctrl.addTrackToPlaylist(track)">Add to Playlist</button>
             {{ track.name }} by {{ track.artist }}
           </h2>
         </div>
       </div>
 
-
+    </div>
   </body>
 </html>

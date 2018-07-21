@@ -76,12 +76,13 @@ app.controller('MainController', ['$http', function($http){
   }
 
   // Makes HTTP request to add track to playlist
-  this.addTrackToPlaylist = (trackName, trackArtist) => {
-    let track = {
-      title: trackName,
-      artist: trackArtist
+  this.addTrackToPlaylist = (track) => {
+    let newtrack = {
+      title: track.name,
+      artist: track.artist,
+      image: track.image
     }
-    this.playlist.tracks.push(track);
+    this.playlist.tracks.push(newtrack);
     console.log('About to update this playlist:', this.playlist);
     $http({
       method: 'PUT',
