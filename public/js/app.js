@@ -1,11 +1,13 @@
 const app = angular.module('MyApp', []);
 
 app.controller('MainController', ['$http', function($http){
+  /* ---------------------
+  Global variables
+   --------------------- */
   this.h1 = 'Playlist App'
-  this.playlist = ''
+  this.playlist = {}
   this.playlists = []
   this.newPlayListName = ''
-
   this.createForm = {}
 
    // API CALL
@@ -17,7 +19,13 @@ app.controller('MainController', ['$http', function($http){
 
   this.tracks = [];
   this.foundMusic = null;
+  // addTrack is true when user is adding a track to the playlist
+  this.addTrack = false;
 
+  /* ---------------------
+  Playlist functions
+   --------------------- */
+  // Makes HTTP request to create new playlist
   this.createPlaylist = () => {
     console.log('Angular - Calling createPlayList');
     $http({
@@ -33,20 +41,32 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  // Makes HTTP request to get all playlists
   this.getPlaylist = () => {
     $http({
       method: 'GET',
       url: '/playlists',
     }).then(response => {
       // console.log(response.data);
+<<<<<<< HEAD
       this.playlists = response.data  
       // console.log('var playlist is', this.playlists)
+=======
+      this.playlists = response.data
+      console.log('var playlist is', this.playlists)
+>>>>>>> 557aed4ad922f2af8e2d0b2688f2af74ec924790
       this.playlist = this.playlists[0]
     }, error => {
       console.log(error);
     })
   }
 
+  this.editPlaylist = (playlistEdit) => {
+    this.playlist = playlistEdit;
+    this.addTrack = true;
+  }
+
+  // Makes HTTP request to delete playlist
   this.deletePlaylist = (id) => {
     $http({
       method: 'DELETE',
@@ -60,31 +80,28 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
-  this.updatePlaylist = () => {
+  // Makes HTTP request to add track to playlist
+  this.addTrackToPlaylist = (trackName, trackArtist) => {
+    let track = {
+      title: trackName,
+      artist: trackArtist
+    }
+    this.playlist.tracks.push(track);
+    console.log('About to update this playlist:', this.playlist);
     $http({
       method: 'PUT',
-      url: '/playlist/' + playlist._id,
-      // data: {
-      //   tracks: [{
-      //     title: this.updatedTitle,
-      //     artist: this.updatedArtist,
-      //     album: this.updatedAlbum,
-      //     genre: this.updatedGenre
-      //   }],
-      //   description: this.updatedDescription,
-      //   likes: {this.updatedLikes},
-      //   tags: [{this.updatedTags}],
-      //   creator: this.updatedCreator
-      //
-      // }
+      url: '/playlists/' + this.playlist._id,
+      data: this.playlist
     }).then(response => {
       console.log(response.data);
-      this.getPlaylist();
     }, error => {
       console.log(error);
     })
   }
 
+  /* ---------------------
+  User functions
+   --------------------- */
   this.createUser = () => {
     console.log('Angular calling createUser');
     $http({
