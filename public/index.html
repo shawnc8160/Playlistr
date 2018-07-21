@@ -35,7 +35,11 @@
       <div ng-repeat="playlist in ctrl.playlists" ng-if="!ctrl.addTrack">
           <p>{{ playlist.name }}</p>
           <button ng-click="ctrl.editPlaylist(playlist)">Edit</button>
+          <!-- delete -->
+          <button ng-click="ctrl.deletePlaylist(playlist)">Delete</button>
       </div>
+
+    
 
       <!-- Search for track div, only appears if user is adding a track to playlist -->
       <div ng-if="ctrl.addTrack">

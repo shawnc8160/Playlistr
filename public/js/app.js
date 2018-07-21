@@ -48,13 +48,8 @@ app.controller('MainController', ['$http', function($http){
       url: '/playlists',
     }).then(response => {
       // console.log(response.data);
-<<<<<<< HEAD
-      this.playlists = response.data  
-      // console.log('var playlist is', this.playlists)
-=======
       this.playlists = response.data
       console.log('var playlist is', this.playlists)
->>>>>>> 557aed4ad922f2af8e2d0b2688f2af74ec924790
       this.playlist = this.playlists[0]
     }, error => {
       console.log(error);
@@ -67,13 +62,14 @@ app.controller('MainController', ['$http', function($http){
   }
 
   // Makes HTTP request to delete playlist
-  this.deletePlaylist = (id) => {
+  this.deletePlaylist = (playlist) => {
+    console.log(playlist)
     $http({
       method: 'DELETE',
-      url: '/playlist/' + id
+      url: '/playlists/' + playlist._id
     }).then(response => {
       console.log(response.data);
-      const removeByIndex = this.playlists.findIndex(playlist => playlist._id === id)
+      const removeByIndex = this.playlists.findIndex(playlist => playlist._id === playlist._id)
       this.playlists.splice(removeByIndex, 1)
     }, error => {
       console.log(error);
