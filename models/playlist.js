@@ -6,7 +6,11 @@ const playlistSchema = mongoose.Schema({
     title: String,
     artist: String,
     album: String,
-    genre: String
+    genre: String,
+    image: [{
+      '#text': String,
+      size: String
+    }]
   }],
   description: String,
   likes: {type: Number, default: 0},
