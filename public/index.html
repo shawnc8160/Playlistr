@@ -10,16 +10,16 @@
       <h1>{{ctrl.h1}}</h1>
 
       <!-- create user -->
-      <h2>Sign Up</h2>
-      <form ng-submit="ctrl.createUser()">
+      <h2 ng-hide="ctrl.loggedIn">Sign Up</h2>
+      <form name="signUpForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.createUser()">
         <input type="text" placeholder=" Create Username" ng-model="ctrl.username" />
         <input type="password" placeholder="Create Password" ng-model="ctrl.password" />
         <input type="submit" value="Sign Up" />
       </form>
 
       <!-- Login user -->
-      <h2>Login</h2>
-      <form ng-submit="ctrl.logIn()">
+      <h2 ng-hide="ctrl.loggedIn">Login</h2>
+      <form name="loginForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.logIn()">
         <input type="text" placeholder="Username" ng-model="ctrl.username" />
         <input type="password" placeholder="Password" ng-model="ctrl.password" />
         <input type="submit" value="Login" />
@@ -42,7 +42,7 @@
       <form name="getMusic" ng-submit="ctrl.getMusic()">
         <input type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle">
         <button type="submit">Search</button>
-      </form> 
+      </form>
 
       <!-- display track info -->
       <div ng-repeat="track in ctrl.tracks">
