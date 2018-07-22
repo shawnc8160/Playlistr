@@ -152,8 +152,18 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: '/log'
     }).then(response => {
-      this.loggedInUser = response.data
-      console.log('loggedInUser is', this.loggedInUser);
+      this.loggedInUserData = response.data
+      console.log('loggedInUser is', this.loggedInUserData);
+    })
+  }
+
+  this.logOutUser = () => {
+    $http({
+      method: 'DELETE', 
+      url: '/sessions'
+    }).then(response => {
+      console.log(response.data)
+      this.loggedInUserData = ''
     })
   }
 
@@ -189,6 +199,6 @@ app.controller('MainController', ['$http', function($http){
     this.playlist = currentPlayList;
   }
 
-  this.loggedInUser();
+  // this.loggedInUser();
   this.getPlaylist();
 }]);

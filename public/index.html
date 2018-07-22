@@ -20,20 +20,26 @@
 
 
         <!-- create user -->
-        <h2 ng-if="!ctrl.loggedInUser">Sign Up</h2>
-        <form ng-if="!ctrl.loggedInUser" name="signUpForm" ng-submit="ctrl.createUser()">
+        <h2 ng-if="!ctrl.loggedInUserData">Sign Up</h2>
+        <form ng-if="!ctrl.loggedInUserData" name="signUpForm" ng-submit="ctrl.createUser()">
           <input type="text" placeholder=" Create Username" ng-model="ctrl.username" />
           <input type="password" placeholder="Create Password" ng-model="ctrl.password" />
           <input type="submit" value="Sign Up" />
         </form>
 
         <!-- Login user -->
-        <h2 ng-if="!ctrl.loggedInUser">Login</h2>
-        <form ng-if="!ctrl.loggedInUser" name="loginForm" ng-submit="ctrl.logIn()">
+        <h2 ng-if="!ctrl.loggedInUserData">Login</h2>
+        <form ng-if="!ctrl.loggedInUserData" name="loginForm" ng-submit="ctrl.logIn()">
           <input type="text" placeholder="Username" ng-model="ctrl.loginUsername" />
           <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
           <input type="submit" value="Login" />
         </form>
+
+        <!-- logout user -->
+  
+        <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
+          <input type="submit" value="Logout"/>
+       </form>
 
         <!-- Create Playlist Section -->
         <div class="create_playlist" ng-if="ctrl.loggedInUser">
