@@ -58,29 +58,6 @@
           </div>
         </div>
 
-        <!-- Search for track div, only appears if user is adding a track to playlist -->
-        <div ng-if="ctrl.addTrack">
-          <!-- search form -->
-          <h2> Add track for {{ctrl.playlist.name}} </h2>
-          <ul ng-repeat="track in ctrl.playlist.tracks">
-            <li>{{track.title}} by {{track.artist}}</li>
-            <button ng-click="ctrl.deleteTrack(ctrl.playlist._id, track._id)">Remove Track</button>
-          </ul>
-          <button ng-click="ctrl.addTrack = false">Finished Editing</button>
-          <h2>Search for Artist or Tracks</h2>
-          <form name="getMusic" ng-submit="ctrl.getMusic()">
-            <input type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle">
-            <button type="submit">Search</button>
-          </form>
-          <!-- display track info -->
-          <div ng-repeat="track in ctrl.tracks">
-            <h2>
-              <button ng-click="ctrl.addTrackToPlaylist(track)">Add to Playlist</button>
-              {{ track.name }} by {{ track.artist }}
-            </h2>
-          </div>
-        </div>
-
       </div>
 
       <!-- HTML for playlist details page -->
