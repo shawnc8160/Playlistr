@@ -1,3 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+h1{
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase; 
+  color: #f78c52; 
+  letter-spacing: 3px; 
+  
+}
+
+h2{
+  font-family: 'Roboto Mono', monospace;
+  text-transform: lowercase; 
+  color: #3ebcfff3; 
+  font-size: 25px; 
+  letter-spacing: 3px; 
+}
+
+body{
+  background-color: #FEFEFE; 
+}
+
 .playlist_preview_container {
   border-top: 1px solid grey;
   padding: 2%;
