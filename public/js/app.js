@@ -152,8 +152,8 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: '/log'
     }).then(response => {
-      this.loggedInUserName = response.data
-      console.log('loggedInUserName is', this.loggedInUserName);
+      this.loggedInUser = response.data
+      console.log('loggedInUser is', this.loggedInUser);
     })
   }
 
