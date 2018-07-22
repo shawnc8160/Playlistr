@@ -22,10 +22,25 @@
         <!-- create user -->
         <h2 ng-if="!ctrl.loggedInUserData">Sign Up</h2>
         <form ng-if="!ctrl.loggedInUserData" name="signUpForm" ng-submit="ctrl.createUser()">
-          <input type="text" placeholder=" Create Username" ng-model="ctrl.username" />
-          <input type="password" placeholder="Create Password" ng-model="ctrl.password" />
+          <input data-id="create-user" type="text" placeholder=" Create Username" ng-model="ctrl.username" />
+          <input data-id="create-password" type="password" placeholder="Create Password" ng-model="ctrl.password" />
           <input type="submit" value="Sign Up" />
         </form>
+
+        <!-- <button class="btn btn-primary createuserbutton" type="button" data-toggle="collapse" data-target="createuser">Sign Up</button>
+        <div class="collapse" id="createuser">
+          <div class="create-username">
+            <div class="create-password">
+              <form name="signUp" ng-submit="ctrl.createUser()">
+                <div class="form-group">
+                  <label for="create-username">Sign Up</label>
+                  <input id="create-password" type="text" placeholder="password " ng-model="ctrl.createUser" class="form-control">
+                </div>
+                <button type="submit">Sign Up</button>
+              </form>
+            </div> -->
+
+        <br>
 
         <!-- Login user -->
         <h2 ng-if="!ctrl.loggedInUserData">Login</h2>
@@ -34,6 +49,9 @@
           <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
           <input type="submit" value="Login" />
         </form>
+
+        <br>
+
 
         <!-- logout user -->
   
@@ -49,6 +67,8 @@
             <input type="submit" value="Create Playlist" />
           </form>
         </div>
+
+        <br>
 
         <!-- Creates List of All Playlist -->
         <div ng-if="!ctrl.addTrack">
@@ -66,6 +86,8 @@
         </div>
 
       </div>
+
+   
 
       <!-- HTML for playlist details page -->
       <div class="playlist-details-container container" ng-if="ctrl.viewDetails">

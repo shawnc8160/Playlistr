@@ -20,6 +20,12 @@ body{
   background-color: #FEFEFE;  
 }
 
+input{
+  border: solid line; 
+  font-family: 'Roboto Mono', monospace; 
+}
+
+
 input[type="submit"]{
   border: none; 
   background-color:#f78c52; 
@@ -55,6 +61,9 @@ input[type="submit"]:focus{
 .btn-xs {
   font-size: 12px;
   padding: 5px;
+  text-align: center; 
+  font-family: 'Roboto Mono', monospace; 
+
   /* position: absolute; */
   /* bottom: 5px; */
 }
