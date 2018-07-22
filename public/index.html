@@ -6,78 +6,125 @@
     <!-- Import JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js" charset="utf-8"></script>
     <script src="/js/app.js" charset="utf-8"></script>
-    <!-- Linking CSS -->
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/skeleton.css">
+    <!-- Linking Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <!-- Linking custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body ng-controller="MainController as ctrl">
+
     <div class="container">
 
-      <h1>{{ctrl.h1}}</h1>
+      <div class="main container" ng-if="!ctrl.viewDetails">
+        <h1 class="display-4">{{ctrl.h1}}</h1>
 
-      <!-- create user -->
-      <h2 ng-hide="ctrl.loggedIn">Sign Up</h2>
-      <form name="signUpForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.createUser()">
-        <input type="text" placeholder=" Create Username" ng-model="ctrl.username" />
-        <input type="password" placeholder="Create Password" ng-model="ctrl.password" />
-        <input type="submit" value="Sign Up" />
-      </form>
 
-      <!-- Login user -->
-      <h2 ng-hide="ctrl.loggedIn">Login</h2>
-      <form name="loginForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.logIn()">
-        <input type="text" placeholder="Username" ng-model="ctrl.loginUsername" />
-        <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
-        <input type="submit" value="Login" />
-      </form>
-
-      <!-- Create Playlist Section -->
-      <div class="create_playlist" ng-if="ctrl.loggedIn">
-        <h2>Create Playlist</h2>
-        <form ng-submit="ctrl.createPlaylist()">
-          <input placeholder="Playlist Name" type="text" ng-model="ctrl.createForm.name" />
-          <input type="submit" value="Create Playlist" />
+        <!-- create user -->
+        <h2 ng-hide="ctrl.loggedIn">Sign Up</h2>
+        <form name="signUpForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.createUser()">
+          <input type="text" placeholder=" Create Username" ng-model="ctrl.username" />
+          <input type="password" placeholder="Create Password" ng-model="ctrl.password" />
+          <input type="submit" value="Sign Up" />
         </form>
-      </div>
 
-      <!-- Creates List of All Playlist -->
-      <div ng-if="!ctrl.addTrack">
-        <h2>All Playlists</h2>
-        <div class="playlist_preview_container">
-          <div class="playlist_preview" ng-repeat="playlist in ctrl.playlists">
-            <img src="{{playlist.tracks[0].image[1]['#text']}}" alt="">
-            <p>{{ playlist.name }}</p>
-            <button ng-click="ctrl.editPlaylist(playlist)">Edit</button>
-            <!-- delete -->
-            <button ng-click="ctrl.deletePlaylist(playlist)">Delete</button>
+        <!-- Login user -->
+        <h2 ng-hide="ctrl.loggedIn">Login</h2>
+        <form name="loginForm" ng-hide="ctrl.loggedIn" ng-submit="ctrl.logIn()">
+          <input type="text" placeholder="Username" ng-model="ctrl.username" />
+          <input type="password" placeholder="Password" ng-model="ctrl.password" />
+          <input type="submit" value="Login" />
+        </form>
+
+        <!-- Create Playlist Section -->
+        <div class="create_playlist" ng-if="ctrl.loggedIn">
+          <h2>Create Playlist</h2>
+          <form ng-submit="ctrl.createPlaylist()">
+            <input placeholder="Playlist Name" type="text" ng-model="ctrl.createForm.name" />
+            <input type="submit" value="Create Playlist" />
+          </form>
+        </div>
+
+        <!-- Creates List of All Playlist -->
+        <div ng-if="!ctrl.addTrack">
+          <h2>All Playlists</h2>
+          <div class="playlist_preview_container">
+            <div ng-repeat="playlist in ctrl.playlists" class="card" style="width: 9rem;">
+              <img class="card-img-top" src="{{playlist.tracks[0].image[3]['#text']}}" alt="">
+              <div class="card-body">
+                <h5 class="card-title">{{ playlist.name }}</h5>
+                <!-- <p class="card-text"></p> -->
+                <a href="#" ng-click="ctrl.showPlaylistDetails(playlist)" class="btn btn-primary btn-xs">Details</a>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
 
-      <!-- Search for track div, only appears if user is adding a track to playlist -->
-      <div ng-if="ctrl.addTrack">
-        <!-- search form -->
-        <h2> Add track for {{ctrl.playlist.name}} </h2>
-        <ul ng-repeat="track in ctrl.playlist.tracks">
-          <li>{{track.title}} by {{track.artist}}</li>
-          <button ng-click="ctrl.deleteTrack(ctrl.playlist._id, track._id)">Remove Track</button>
-        </ul>
-        <button ng-click="ctrl.addTrack = false">Finished Editing</button>
-        <h2>Search for Artist or Tracks</h2>
-        <form name="getMusic" ng-submit="ctrl.getMusic()">
-          <input type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle">
-          <button type="submit">Search</button>
-        </form>
-        <!-- display track info -->
-        <div ng-repeat="track in ctrl.tracks">
-          <h2>
-            <button ng-click="ctrl.addTrackToPlaylist(track)">Add to Playlist</button>
-            {{ track.name }} by {{ track.artist }}
-          </h2>
+      <!-- HTML for playlist details page -->
+      <div class="playlist-details-container container" ng-if="ctrl.viewDetails">
+        <h1>{{ctrl.playlist.name}}</h1>
+
+        <!-- Add track section, only visible if you click the button -->
+        <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection">Add Track</button>
+        <div class="collapse" id="addTrackSection">
+          <div class="track-search-section">
+            <div class="track-search-form">
+              <form name="getMusic" ng-submit="ctrl.getMusic()">
+                <div class="form-group">
+                  <label for="tracksearch">Search for Song or Artist</label>
+                  <input id="tracksearch" type="text" placeholder="Artist or Track Title " ng-model="ctrl.MusicTitle" class="form-control">
+                </div>
+                <button type="submit">Search</button>
+              </form>
+            </div>
+            <div class="track-search-results">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Artist</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tr ng-repeat="track in ctrl.tracks">
+                  <td>{{ track.name }}</td>
+                  <td>{{ track.artist }}</td>
+                  <td><button class="btn btn-primary btn-xs" ng-click="ctrl.addTrackToPlaylist(track, $index)">Add Track</button></td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
+
+        <!-- Table to display the tracks -->
+        <br>
+        <table class="table tracksearchtable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Artist</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tr ng-repeat="track in ctrl.playlist.tracks">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ track.title }}</td>
+            <td>{{ track.artist }}</td>
+            <td><button class="btn btn-primary btn-xs" ng-click="ctrl.deleteTrack(ctrl.playlist._id, track._id)">Remove Track</button></td>
+          </tr>
+        </table>
+        <button ng-click="ctrl.viewDetails = false" class="btn btn-primary btn-sm">Go Back</button>
+        <button ng-click="ctrl.deletePlaylist(playlist)" class="btn btn-primary btn-sm">Delete Playlist</button>
       </div>
 
+      <!-- All content should go above this point -->
     </div>
   </body>
+
+  <!-- Linking bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 </html>
