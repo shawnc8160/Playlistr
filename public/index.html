@@ -84,6 +84,7 @@
                 <button type="submit">Search</button>
               </form>
             </div>
+            <!-- This sections display track search result table -->
             <div class="track-search-results">
               <table class="table">
                 <thead>
@@ -96,7 +97,7 @@
                 <tr ng-repeat="track in ctrl.tracks">
                   <td>{{ track.name }}</td>
                   <td>{{ track.artist }}</td>
-                  <td><button class="btn btn-primary btn-xs" ng-click="ctrl.addTrackToPlaylist(track, $index)">Add Track</button></td>
+                  <td><button class="btn btn-primary btn-xs" ng-click="ctrl.addTrackToPlaylist(track.name, track.artist, track.image, $index)">Add Track</button></td>
                 </tr>
               </table>
             </div>
