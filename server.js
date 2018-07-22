@@ -23,6 +23,7 @@ app.use(express.static("public"));
 //If the user is NOT logged in, send an error message
 app.get("/log", (req, res) => {
   if(req.session.currentUser){
+    console.log('current user is', req.session.currentUser);
     res.json(req.session.currentUser);
   } else {
     res.status(401).json({

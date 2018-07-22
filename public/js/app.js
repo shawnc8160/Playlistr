@@ -138,8 +138,8 @@ app.controller('MainController', ['$http', function($http){
       method: 'POST',
       url: '/sessions',
       data: {
-        username: this.username,
-        password: this.password
+        username: this.loginUsername,
+        password: this.loginPassword
       }
     }).then(response => {
       console.log(response);
@@ -152,7 +152,8 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: '/log'
     }).then(response => {
-      this.loggedIn = response.data.username
+      this.loggedInUser = response.data
+      console.log('loggedInUser is', this.loggedInUser);
     })
   }
 
@@ -188,6 +189,6 @@ app.controller('MainController', ['$http', function($http){
     this.playlist = currentPlayList;
   }
 
-
+  this.loggedInUser();
   this.getPlaylist();
 }]);
