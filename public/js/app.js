@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http){
   this.playlists = []
   this.newPlayListName = ''
   this.createForm = {}
+  this.selectedTrack = {}
 
    // API CALL
   this.baseURL = 'http://ws.audioscrobbler.com/2.0/?';
@@ -79,24 +80,53 @@ app.controller('MainController', ['$http', function($http){
   }
 
   // Makes HTTP request to add track to playlist
-  this.addTrackToPlaylist = (track, index) => {
-    let newtrack = {
-      title: track.name,
-      artist: track.artist,
-      image: track.image
-    }
-    this.tracks.splice(index, 1);
-    this.playlist.tracks.push(newtrack);
-    console.log('About to update this playlist:', this.playlist);
+  this.addTrackToPlaylist = (title, artist, images, index) => {
+
+    let titleFormatted = title.split(' ').join('+');
+    let artistFormatted = artist.split(' ').join('+');
+    this.selectedTrack.title = title;
+    this.selectedTrack.artist = artist;
+    this.selectedTrack.image = images;
+    this.selectedTrack.index = index;
     $http({
-      method: 'PUT',
-      url: '/playlists/' + this.playlist._id,
-      data: this.playlist
+      method: 'GET',
+      url: this.baseURL + this.methodInfo + this.apikey + "&artist=" + artistFormatted + '&track=' + titleFormatted + this.format
     }).then(response => {
-      console.log(response.data);
+      this.selectedTrack.tags = [];
+      if (response.data.track) {
+        console.log('Got track details back', response.data.track);
+        if (response.data.track.toptags.tag) {
+          this.selectedTrack.tags = response.data.track.toptags.tag.map(a => a.name)
+        } else {
+          console.log('no tags in track details');
+        }
+      } else {
+        console.log('Did not get any details back');
+      }
+      let newtrack = {
+        title: this.selectedTrack.title,
+        artist: this.selectedTrack.artist,
+        tags: this.selectedTrack.tags,
+        image: this.selectedTrack.image
+      }
+      console.log('newtrack is', newtrack);
+      this.tracks.splice(index, 1);
+      this.playlist.tracks.push(newtrack);
+      console.log('About to update this playlist:', this.playlist);
+      $http({
+        method: 'PUT',
+        url: '/playlists/' + this.playlist._id,
+        data: this.playlist
+      }).then(response => {
+        console.log(response.data);
+        this.selectedTrack = {};
+      }, error => {
+        console.log(error);
+      })
+
     }, error => {
-      console.log(error);
-    })
+      console.error(error);
+    }).catch(err => console.error('Catch: ', err));
   }
 
   // Remove Track from Playlist
@@ -152,8 +182,8 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: '/log'
     }).then(response => {
-      this.loggedInUser = response.data
-      console.log('loggedInUser is', this.loggedInUser);
+      this.loggedInUserData = response.data
+      console.log('loggedInUser is', this.loggedInUserData);
     })
   }
 
