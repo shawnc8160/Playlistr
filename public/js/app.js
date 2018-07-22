@@ -22,6 +22,9 @@ app.controller('MainController', ['$http', function($http){
   // addTrack is true when user is adding a track to the playlist
   this.addTrack = false;
 
+  // Toggle variables for displays
+  this.viewDetails = false;
+
   /* ---------------------
   Playlist functions
    --------------------- */
@@ -76,12 +79,13 @@ app.controller('MainController', ['$http', function($http){
   }
 
   // Makes HTTP request to add track to playlist
-  this.addTrackToPlaylist = (track) => {
+  this.addTrackToPlaylist = (track, index) => {
     let newtrack = {
       title: track.name,
       artist: track.artist,
       image: track.image
     }
+    this.tracks.splice(index, 1);
     this.playlist.tracks.push(newtrack);
     console.log('About to update this playlist:', this.playlist);
     $http({
@@ -179,6 +183,10 @@ app.controller('MainController', ['$http', function($http){
     }).catch(err => console.error('Catch: ', err));
   }
 
+  this.showPlaylistDetails = (currentPlayList) => {
+    this.viewDetails = true;
+    this.playlist = currentPlayList;
+  }
 
 
   this.getPlaylist();
