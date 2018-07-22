@@ -92,11 +92,11 @@ app.controller('MainController', ['$http', function($http){
       method: 'GET',
       url: this.baseURL + this.methodInfo + this.apikey + "&artist=" + artistFormatted + '&track=' + titleFormatted + this.format
     }).then(response => {
-      this.selectedTrack.tags = [];
+      this.selectedTrack.tags = [this.selectedTrack.title, this.selectedTrack.artist];
       if (response.data.track) {
         console.log('Got track details back', response.data.track);
         if (response.data.track.toptags.tag) {
-          this.selectedTrack.tags = response.data.track.toptags.tag.map(a => a.name)
+          this.selectedTrack.tags = this.selectedTrack.tags.concat(response.data.track.toptags.tag.map(a => a.name))
         } else {
           console.log('no tags in track details');
         }
