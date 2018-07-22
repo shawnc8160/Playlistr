@@ -54,10 +54,12 @@
 
 
         <!-- logout user -->
-  
-        <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
-          <input type="submit" value="Logout"/>
-       </form>
+      
+        <div class="btn-logout">
+          <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
+            <input type="submit" value="Logout"/>
+          </form>
+        </div>
 
         <!-- Create Playlist Section -->
         <div class="create_playlist" ng-if="ctrl.loggedInUser">
@@ -78,7 +80,7 @@
               <img class="card-img-top" src="{{playlist.tracks[0].image[3]['#text']}}" alt="">
               <div class="card-body">
                 <h5 class="card-title">{{ playlist.name }}</h5>
-                <!-- <p class="card-text"></p> -->
+                <p class="card-text"> a playlist by {{ playlist.creator }}</p>
                 <a href="#" ng-click="ctrl.showPlaylistDetails(playlist)" class="btn btn-primary btn-xs">Details</a>
               </div>
             </div>
