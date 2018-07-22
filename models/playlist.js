@@ -5,8 +5,8 @@ const playlistSchema = mongoose.Schema({
   tracks: [{
     title: String,
     artist: String,
-    album: String,
-    genre: String,
+    url: String,
+    tags: [String],
     image: [{
       '#text': String,
       size: String
