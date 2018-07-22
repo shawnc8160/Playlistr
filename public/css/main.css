@@ -17,7 +17,19 @@ h2{
 }
 
 body{
-  background-color: #FEFEFE; 
+  background-color: #FEFEFE;  
+}
+
+input[type="submit"]{
+  border: none; 
+  background-color:#f78c52; 
+  font-family: 'Roboto Mono', monospace;
+  color: white; 
+  cursor: pointer; 
+}
+
+input[type="submit"]:focus{
+  outline: 2px solid #3ebcfff3; 
 }
 
 .playlist_preview_container {
