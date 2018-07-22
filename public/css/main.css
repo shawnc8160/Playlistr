@@ -1,23 +1,51 @@
 .playlist_preview_container {
-  border: 1px solid grey;
-  padding: 10%;
+  border-top: 1px solid grey;
+  padding: 2%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 10px;
+  position: relative;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-body {
+  padding: 1.1rem;
+}
+
+.btn-xs {
+  font-size: 12px;
+  padding: 5px;
+  /* position: absolute; */
+  /* bottom: 5px; */
+}
+
+.track-search-section {
+  height: 250px;
+  width: 100%;
   display: flex;
 }
 
-.playlist_preview {
-  background: #efefef;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
+.addtrackbutton {
+  margin-bottom: 10px;
+}
+
+.track-search-form {
+  width: 30%;
+}
+
+.track-search-results {
+  width: 70%;
+  height: 100%;
+  overflow: scroll;
   margin: 10px;
 }
 
-.playlist_preview > button {
-  width: 70px;
-  padding: 4px;
-}
-
-.playlist_preview > p {
-  padding: 10px;
+track-search-results table {
+  font-size: 1em;
 }
