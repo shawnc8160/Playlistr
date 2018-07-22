@@ -138,8 +138,8 @@ app.controller('MainController', ['$http', function($http){
       method: 'POST',
       url: '/sessions',
       data: {
-        username: this.loginUsername,
-        password: this.loginPassword
+        username: this.username,
+        password: this.password
       }
     }).then(response => {
       console.log(response);
