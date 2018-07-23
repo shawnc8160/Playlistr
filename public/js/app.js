@@ -26,6 +26,9 @@ app.controller('MainController', ['$http', function($http){
   // Toggle variables for displays
   this.viewDetails = false;
 
+  // Determines which playlists are viewable (users own playlists or all playlists)
+  this.activeView = '';
+
   /* ---------------------
   Playlist functions
    --------------------- */
@@ -229,6 +232,18 @@ app.controller('MainController', ['$http', function($http){
   this.showPlaylistDetails = (currentPlayList) => {
     this.viewDetails = true;
     this.playlist = currentPlayList;
+  }
+
+  this.setMyPlaylistView = () => {
+    if (this.loggedInUserData) {
+      this.activeView = {'creator': this.loggedInUserData.username}
+      console.log('activeView is now', this.activeView);
+    }
+  }
+
+  this.setAllPlaylistView = () => {
+    this.activeView = '';
+    console.log('activeView is now', this.activeView);
   }
 
   this.loggedInUser();
