@@ -191,5 +191,7 @@ track-search-results table {
 }
 
 #addTrack {
-  max-height: 1em;
+  max-height: 2em;
+  cursor: pointer;
+  padding: 5px;
 }
