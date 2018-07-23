@@ -4,7 +4,7 @@ h1{
   font-family: 'Roboto Mono', monospace;
   text-transform: uppercase; 
   color: #f78c52; 
-  letter-spacing: 3px; 
+  letter-spacing: 5px; 
   
 }
 
@@ -19,6 +19,12 @@ h2{
 body{
   background-color: #FEFEFE;  
 }
+
+input{
+  border: solid line; 
+  font-family: 'Roboto Mono', monospace; 
+}
+
 
 input[type="submit"]{
   border: none; 
@@ -52,17 +58,45 @@ input[type="submit"]:focus{
   padding: 1.1rem;
 }
 
+.btn-primary{
+  font-size: 15px;
+  padding: 5px;
+  font-family: 'Roboto Mono', monospace; 
+
+}
+
 .btn-xs {
   font-size: 12px;
   padding: 5px;
+  font-family: 'Roboto Mono', monospace; 
+
   /* position: absolute; */
   /* bottom: 5px; */
+}
+
+.form-group{
+  font-family: 'Roboto Mono', monospace; 
+ 
 }
 
 .track-search-section {
   height: 250px;
   width: 100%;
   display: flex;
+}
+
+button[type="submit"]{
+  border: none; 
+  background-color:#f78c52; 
+  font-family: 'Roboto Mono', monospace;
+  color: white; 
+  cursor: pointer; 
+}
+
+.btn-logout{
+  /* display: flex; 
+  flex-direction: row; 
+  justify-content: flex-end;  */
 }
 
 .addtrackbutton {

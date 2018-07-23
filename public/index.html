@@ -22,10 +22,25 @@
         <!-- create user -->
         <h2 ng-if="!ctrl.loggedInUserData">Sign Up</h2>
         <form ng-if="!ctrl.loggedInUserData" name="signUpForm" ng-submit="ctrl.createUser()">
-          <input type="text" placeholder=" Create Username" ng-model="ctrl.username" />
-          <input type="password" placeholder="Create Password" ng-model="ctrl.password" />
+          <input data-id="create-user" type="text" placeholder=" Create Username" ng-model="ctrl.username" />
+          <input data-id="create-password" type="password" placeholder="Create Password" ng-model="ctrl.password" />
           <input type="submit" value="Sign Up" />
         </form>
+
+        <!-- <button class="btn btn-primary createuserbutton" type="button" data-toggle="collapse" data-target="createuser">Sign Up</button>
+        <div class="collapse" id="createuser">
+          <div class="create-username">
+            <div class="create-password">
+              <form name="signUp" ng-submit="ctrl.createUser()">
+                <div class="form-group">
+                  <label for="create-username">Sign Up</label>
+                  <input id="create-password" type="text" placeholder="password " ng-model="ctrl.createUser" class="form-control">
+                </div>
+                <button type="submit">Sign Up</button>
+              </form>
+            </div> -->
+
+        <br>
 
         <!-- Login user -->
         <h2 ng-if="!ctrl.loggedInUserData">Login</h2>
@@ -35,11 +50,16 @@
           <input type="submit" value="Login" />
         </form>
 
+        <br>
+
+
         <!-- logout user -->
-  
-        <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
-          <input type="submit" value="Logout"/>
-       </form>
+      
+        <div class="btn-logout">
+          <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
+            <input type="submit" value="Logout"/>
+          </form>
+        </div>
 
         <!-- Create Playlist Section -->
         <div class="create_playlist" ng-if="ctrl.loggedInUser">
@@ -50,6 +70,8 @@
           </form>
         </div>
 
+        <br>
+
         <!-- Creates List of All Playlist -->
         <div ng-if="!ctrl.addTrack">
           <h2>All Playlists</h2>
@@ -58,7 +80,7 @@
               <img class="card-img-top" src="{{playlist.tracks[0].image[3]['#text']}}" alt="">
               <div class="card-body">
                 <h5 class="card-title">{{ playlist.name }}</h5>
-                <!-- <p class="card-text"></p> -->
+                <p class="card-text"> a playlist by {{ playlist.creator }}</p>
                 <a href="#" ng-click="ctrl.showPlaylistDetails(playlist)" class="btn btn-primary btn-xs">Details</a>
               </div>
             </div>
@@ -66,6 +88,8 @@
         </div>
 
       </div>
+
+   
 
       <!-- HTML for playlist details page -->
       <div class="playlist-details-container container" ng-if="ctrl.viewDetails">
