@@ -114,10 +114,10 @@
             <!-- <div class="collapse navbar-collapse" id="navbarText"> -->
               <ul class="nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">My Playlists</a>
+                  <a ng-click="ctrl.setMyPlaylistView()" class="nav-link">My Playlists</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">All Playlists</a>
+                  <a ng-click="ctrl.setAllPlaylistView()" class="nav-link">All Playlists</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Favorites</a>
@@ -132,7 +132,7 @@
 
           <div class="playlist_preview_container">
 
-            <div ng-repeat="playlist in ctrl.playlists  | filter: searchBox" class="card" style="width: 9rem;">
+            <div ng-repeat="playlist in ctrl.playlists | filter: ctrl.activeView  | filter: searchBox" class="card" style="width: 9rem;">
               <img class="card-img-top" src="{{playlist.tracks[0].image[3]['#text']}}" alt="">
               <div class="card-body">
                 <h5 class="card-title">{{ playlist.name }}</h5>
