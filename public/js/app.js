@@ -32,12 +32,19 @@ app.controller('MainController', ['$http', function($http){
   // Determines if the current playlist is liked by the user
   this.currentlyLiked = false;
 
+  this.playlistArchive = [];
+  this.favoritesList = [];
+
   /* ---------------------
   Playlist functions
    --------------------- */
   // Makes HTTP request to create new playlist
   this.createPlaylist = () => {
     this.createForm.creator = this.loggedInUserData.username;
+    if (this.playlistArchive.length > 0) {
+      this.playlists = this.playlistArchive.slice(0);
+      this.playlistArchive = [];
+    }
     console.log('Angular - Calling createPlayList');
     $http({
       method: 'POST',
@@ -202,6 +209,7 @@ app.controller('MainController', ['$http', function($http){
     }).then(response => {
       console.log(response.data)
       this.loggedInUserData = ''
+      this.viewDetails = false;
     })
   }
 
@@ -233,21 +241,42 @@ app.controller('MainController', ['$http', function($http){
   }
 
   this.showPlaylistDetails = (currentPlayList) => {
-    this.currentlyLikedCheck();
     this.viewDetails = true;
     this.playlist = currentPlayList;
+    this.currentlyLikedCheck();
   }
 
   this.setMyPlaylistView = () => {
     if (this.loggedInUserData) {
       this.activeView = {'creator': this.loggedInUserData.username}
-      console.log('activeView is now', this.activeView);
+      if (this.playlistArchive.length > 0) {
+        this.playlists = this.playlistArchive.slice(0);
+        this.playlistArchive = [];
+      }
     }
   }
 
   this.setAllPlaylistView = () => {
     this.activeView = '';
-    console.log('activeView is now', this.activeView);
+    if (this.playlistArchive.length > 0) {
+      this.playlists = this.playlistArchive.slice(0);
+      this.playlistArchive = [];
+    }
+  }
+
+  this.setFavoriteView = () => {
+    this.getFavorites();
+    this.activeView = '';
+    this.playlistArchive = this.playlists.slice(0);
+    this.playlists = this.favoritesList.slice(0);
+    console.log('playlist is now', this.playlists);
+  }
+
+  this.getFavorites = () => {
+    if (this.loggedInUserData) {
+      this.favoritesList = this.playlists.filter(playlist =>  this.loggedInUserData.likes.includes(playlist._id));
+      console.log('favorites list is', this.favoritesList);
+    }
   }
 
   this.currentlyLikedCheck = () => {
@@ -305,6 +334,8 @@ app.controller('MainController', ['$http', function($http){
     })
   }
 
+  this.currentlyLikedCheck();
   this.loggedInUser();
   this.getPlaylist();
+  this.getFavorites();
 }]);
