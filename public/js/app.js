@@ -67,13 +67,14 @@ app.controller('MainController', ['$http', function($http){
 
   // Makes HTTP request to delete playlist
   this.deletePlaylist = (playlist) => {
-    console.log(playlist)
+    console.log(this.playlist)
+    this.viewDetails = false;
     $http({
       method: 'DELETE',
-      url: '/playlists/' + playlist._id
+      url: '/playlists/' + this.playlist._id
     }).then(response => {
       console.log(response.data);
-      const removeByIndex = this.playlists.findIndex(playlist => playlist._id === playlist._id)
+      const removeByIndex = this.playlists.findIndex(playlist => playlist._id === this.playlist._id)
       this.playlists.splice(removeByIndex, 1)
     }, error => {
       console.log(error);
