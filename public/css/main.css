@@ -73,6 +73,7 @@ input[type="submit"]:focus{
   font-size: 15px;
   padding: 5px;
   font-family: 'Roboto Mono', monospace;
+
 }
 
 .btn-xs {
@@ -114,16 +115,6 @@ button[type="submit"]{
   justify-content: flex-end;  */
 }
 
-.btn-outline-success{
-  border-color:#f78c52;
-  color:  #3ebcfff3
-}
-
-.nav-link{
-  font-family: 'Roboto Mono', monospace;
-  text-transform: uppercase;
-}
-
 .addtrackbutton {
   margin-bottom: 10px;
 }
@@ -163,6 +154,25 @@ track-search-results table {
 .menu-container button {
   margin-right: 10px;
 }
+
+.likes-container {
+  width: 200px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 15px 0;
+}
+
+.likes-counter {
+  width: 75px;
+  height: 35px;
+  text-align: center;
+  padding: 7px 0;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
 #addTrack {
   max-height: 1em;
 }

@@ -114,13 +114,13 @@
             <!-- <div class="collapse navbar-collapse" id="navbarText"> -->
               <ul class="nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">My Playlists</a>
+                  <a ng-click="ctrl.setMyPlaylistView()" class="nav-link">My Playlists</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">All Playlists</a>
+                  <a ng-click="ctrl.setAllPlaylistView()" class="nav-link">All Playlists</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Favorites</a>
+                  <a class="nav-link">Favorites</a>
                 </li>
               </ul>
             <!-- </div> -->
@@ -132,7 +132,7 @@
 
           <div class="playlist_preview_container">
 
-            <div ng-repeat="playlist in ctrl.playlists  | filter: searchBox" class="card" style="width: 9rem;">
+            <div ng-repeat="playlist in ctrl.playlists | filter: ctrl.activeView  | filter: searchBox" class="card" style="width: 9rem;">
               <img class="card-img-top" src="{{playlist.tracks[0].image[3]['#text']}}" alt="">
               <div class="card-body">
                 <h5 class="card-title">{{ playlist.name }}</h5>
@@ -150,10 +150,14 @@
       <!-- HTML for playlist details page -->
       <div class="playlist-details-container container" ng-if="ctrl.viewDetails">
         <h1>{{ctrl.playlist.name}}</h1>
-
+        <div class = "likes-container">
+          <div class="likes-counter">likes: {{ctrl.playlist.likes}}</div>
+          <button ng-if="!ctrl.currentlyLiked && ctrl.loggedInUserData" ng-click="ctrl.likePlaylist()" class="btn btn-light btn-xs">Like</button>
+          <button ng-if="ctrl.currentlyLiked && ctrl.loggedInUserData" ng-click="ctrl.unlikePlaylist()" class="btn btn-light btn-xs">Unlike</button>
+        </div>
         <!-- Add track section, only visible if you click the button -->
-        <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username">ADD TRACK</button>
-        <!-- <img id="addTrack" src="/assets/addTrackButton.png" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username" data-toggle="collapse" data-target="#addTrackSection"> -->
+        <!-- <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username">ADD TRACK</button> -->
+        <img id="addTrack" src="/assets/addTrackButton.png" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username" data-toggle="collapse" data-target="#addTrackSection">
         <div class="collapse" id="addTrackSection">
           <div class="track-search-section">
             <div class="track-search-form">
