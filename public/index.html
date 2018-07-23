@@ -152,7 +152,8 @@
         <h1>{{ctrl.playlist.name}}</h1>
 
         <!-- Add track section, only visible if you click the button -->
-        <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username">Add Track</button>
+        <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username">ADD TRACK</button>
+        <!-- <img id="addTrack" src="/assets/addTrackButton.png" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username" data-toggle="collapse" data-target="#addTrackSection"> -->
         <div class="collapse" id="addTrackSection">
           <div class="track-search-section">
             <div class="track-search-form">
