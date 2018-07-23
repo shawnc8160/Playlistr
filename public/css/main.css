@@ -5,6 +5,7 @@ h1{
   text-transform: uppercase;
   color: #f78c52;
   letter-spacing: 5px;
+  text-shadow: 1px 1px black; 
 
 }
 
@@ -14,6 +15,7 @@ h2{
   color: #3ebcfff3;
   font-size: 25px;
   letter-spacing: 3px;
+  text-shadow: 1px 1px black; 
 }
 
 body{
@@ -74,9 +76,26 @@ input[type="submit"]:focus{
   /* bottom: 5px; */
 }
 
+.btn-outline-success{
+  background-color: #3ebcfff3; 
+  color: white;  
+}
+
+.btn-reset:hover{
+  background-color: #f78c52; 
+}
+
 .form-group{
   font-family: 'Roboto Mono', monospace;
 
+}
+
+.nav-link{
+  font-family: 'Roboto Mono', monospace;
+  text-transform: lowercase; 
+  letter-spacing: 1px; 
+  cursor: pointer;
+   
 }
 
 .track-search-section {
