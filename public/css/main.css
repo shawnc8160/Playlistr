@@ -5,7 +5,7 @@ h1{
   text-transform: uppercase;
   color: #f78c52;
   letter-spacing: 5px;
-  text-shadow: 1px 1px black; 
+  text-shadow: 1px 1px black;
 
 }
 
@@ -15,7 +15,7 @@ h2{
   color: #3ebcfff3;
   font-size: 25px;
   letter-spacing: 3px;
-  text-shadow: 1px 1px black; 
+  text-shadow: 1px 1px black;
 }
 
 body{
@@ -54,10 +54,19 @@ input[type="submit"]:focus{
 
 .card-title {
   font-size: 18px;
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
 }
 
 .card-body {
   padding: 1.1rem;
+}
+
+.card-text{
+  font-family: 'Roboto Mono', monospace;
+  text-transform: lowercase;
+  font-size: 12px;
+
 }
 
 .btn-primary{
@@ -77,12 +86,12 @@ input[type="submit"]:focus{
 }
 
 .btn-outline-success{
-  background-color: #3ebcfff3; 
-  color: white;  
+  background-color: #3ebcfff3;
+  color: white;
 }
 
 .btn-reset:hover{
-  background-color: #f78c52; 
+  background-color: #f78c52;
 }
 
 .form-group{
@@ -92,16 +101,21 @@ input[type="submit"]:focus{
 
 .nav-link{
   font-family: 'Roboto Mono', monospace;
-  text-transform: lowercase; 
-  letter-spacing: 1px; 
+  text-transform: lowercase;
+  letter-spacing: 1px;
   cursor: pointer;
-   
+
 }
 
 .track-search-section {
   height: 250px;
   width: 100%;
   display: flex;
+}
+
+.table{
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
 }
 
 button[type="submit"]{
@@ -174,4 +188,10 @@ track-search-results table {
   border-radius: 10px;
   margin-right: 10px;
   font-size: 12px;
+}
+
+#addTrack {
+  max-height: 2em;
+  cursor: pointer;
+  padding: 5px;
 }
