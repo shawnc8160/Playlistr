@@ -54,7 +54,7 @@
 
 
         <!-- logout user -->
-      
+
         <div class="btn-logout">
           <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
             <input type="submit" value="Logout"/>
@@ -62,7 +62,7 @@
         </div>
 
         <!-- Create Playlist Section -->
-        <div class="create_playlist" ng-if="ctrl.loggedInUser">
+        <div class="create_playlist" ng-if="ctrl.loggedInUserData">
           <h2>Create Playlist</h2>
           <form ng-submit="ctrl.createPlaylist()">
             <input placeholder="Playlist Name" type="text" ng-model="ctrl.createForm.name" />
@@ -89,7 +89,7 @@
 
       </div>
 
-   
+
 
       <!-- HTML for playlist details page -->
       <div class="playlist-details-container container" ng-if="ctrl.viewDetails">
