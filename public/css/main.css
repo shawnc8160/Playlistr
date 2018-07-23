@@ -73,13 +73,12 @@ input[type="submit"]:focus{
   font-size: 15px;
   padding: 5px;
   font-family: 'Roboto Mono', monospace;
-
 }
 
 .btn-xs {
   font-size: 12px;
   padding: 5px;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace; 
 
   /* position: absolute; */
   /* bottom: 5px; */

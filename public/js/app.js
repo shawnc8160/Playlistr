@@ -231,6 +231,6 @@ app.controller('MainController', ['$http', function($http){
     this.playlist = currentPlayList;
   }
 
-  // this.loggedInUser();
+  this.loggedInUser();
   this.getPlaylist();
 }]);
