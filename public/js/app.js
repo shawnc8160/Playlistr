@@ -29,6 +29,9 @@ app.controller('MainController', ['$http', function($http){
   // Determines which playlists are viewable (users own playlists or all playlists)
   this.activeView = '';
 
+  // Determines if the current playlist is liked by the user
+  this.currentlyLiked = false;
+
   /* ---------------------
   Playlist functions
    --------------------- */
@@ -230,6 +233,7 @@ app.controller('MainController', ['$http', function($http){
   }
 
   this.showPlaylistDetails = (currentPlayList) => {
+    this.currentlyLikedCheck();
     this.viewDetails = true;
     this.playlist = currentPlayList;
   }
@@ -244,6 +248,61 @@ app.controller('MainController', ['$http', function($http){
   this.setAllPlaylistView = () => {
     this.activeView = '';
     console.log('activeView is now', this.activeView);
+  }
+
+  this.currentlyLikedCheck = () => {
+    if (this.playlist._id && this.loggedInUserData) {
+      this.currentlyLiked = this.loggedInUserData.likes.includes(this.playlist._id)
+    }
+  }
+
+  this.likePlaylist = () => {
+    this.loggedInUserData.likes.push(this.playlist._id);
+    this.playlist.likes+=1;
+    this.currentlyLiked=true;
+    $http({
+      method: 'PUT',
+      url: '/users/'+this.loggedInUserData._id,
+      data: this.loggedInUserData
+    }).then(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    })
+    $http({
+      method: 'PUT',
+      url: '/playlists/' + this.playlist._id,
+      data: this.playlist
+    }).then(response => {
+      console.log(response.data);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  this.unlikePlaylist = () => {
+    let index = this.loggedInUserData.likes.indexOf(this.playlist._id);
+    this.loggedInUserData.likes.splice(index, 1);
+    this.playlist.likes-=1;
+    this.currentlyLiked=false;
+    $http({
+      method: 'PUT',
+      url: '/users/'+this.loggedInUserData._id,
+      data: this.loggedInUserData
+    }).then(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    })
+    $http({
+      method: 'PUT',
+      url: '/playlists/' + this.playlist._id,
+      data: this.playlist
+    }).then(response => {
+      console.log(response.data);
+    }, error => {
+      console.log(error);
+    })
   }
 
   this.loggedInUser();
