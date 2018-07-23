@@ -75,8 +75,12 @@
         <!-- Creates List of All Playlist -->
         <div ng-if="!ctrl.addTrack">
           <h2>All Playlists</h2>
+          <label for="Search">
+            Search <input type='text' placeholder='' ng-model='searchBox'>
+          </label>
           <div class="playlist_preview_container">
-            <div ng-repeat="playlist in ctrl.playlists" class="card" style="width: 9rem;">
+
+            <div ng-repeat="playlist in ctrl.playlists  | filter: searchBox" class="card" style="width: 9rem;">
               <img class="card-img-top" src="{{playlist.tracks[0].image[3]['#text']}}" alt="">
               <div class="card-body">
                 <h5 class="card-title">{{ playlist.name }}</h5>
@@ -130,6 +134,7 @@
 
         <!-- Table to display the tracks -->
         <br>
+
         <table class="table tracksearchtable">
           <thead>
             <tr>
