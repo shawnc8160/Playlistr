@@ -175,6 +175,11 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       console.log(response);
+      this.loginUsername = this.username;
+      this.loginPassword = this.password;
+      this.logIn();
+      this.username = '';
+      this.Password = '';
     })
   }
 
@@ -188,6 +193,8 @@ app.controller('MainController', ['$http', function($http){
       }
     }).then(response => {
       console.log(response);
+      this.loginUsername ='';
+      this.loginPassword ='';
       this.loggedInUser();
     })
   }

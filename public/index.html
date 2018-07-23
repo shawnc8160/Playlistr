@@ -30,7 +30,7 @@
           <form ng-if="!ctrl.loggedInUserData" name="signUpForm" ng-submit="ctrl.createUser()">
             <input data-id="create-user" type="text" placeholder=" Create Username" ng-model="ctrl.username" />
             <input data-id="create-password" type="password" placeholder="Create Password" ng-model="ctrl.password" />
-            <input type="submit" value="Sign Up" />
+            <input type="submit" value="Sign Up" data-toggle="collapse" data-target="#signUpCollapse" />
           </form>
         </div>
       </div>
@@ -39,7 +39,7 @@
           <form ng-if="!ctrl.loggedInUserData" name="loginForm" ng-submit="ctrl.logIn()">
             <input type="text" placeholder="Username" ng-model="ctrl.loginUsername" />
             <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
-            <input type="submit" value="Login" />
+            <input type="submit" value="Login" data-toggle="collapse" data-target="#loginCollapse" />
           </form>
         </div>
       </div>
