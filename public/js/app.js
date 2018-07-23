@@ -233,7 +233,7 @@ app.controller('MainController', ['$http', function($http){
   }
 
   this.showPlaylistDetails = (currentPlayList) => {
-    this.currentlyLiked();
+    this.currentlyLikedCheck();
     this.viewDetails = true;
     this.playlist = currentPlayList;
   }
@@ -250,7 +250,7 @@ app.controller('MainController', ['$http', function($http){
     console.log('activeView is now', this.activeView);
   }
 
-  this.currentlyLiked = () => {
+  this.currentlyLikedCheck = () => {
     if (this.playlist._id && this.loggedInUserData) {
       this.currentlyLiked = this.loggedInUserData.likes.includes(this.playlist._id)
     }
@@ -259,7 +259,7 @@ app.controller('MainController', ['$http', function($http){
   this.likePlaylist = () => {
     this.loggedInUserData.likes.push(this.playlist._id);
     this.playlist.likes+=1;
-    this.currentlyLiked=false;
+    this.currentlyLiked=true;
     $http({
       method: 'PUT',
       url: '/users/'+this.loggedInUserData._id,
@@ -284,7 +284,7 @@ app.controller('MainController', ['$http', function($http){
     let index = this.loggedInUserData.likes.indexOf(this.playlist._id);
     this.loggedInUserData.likes.splice(index, 1);
     this.playlist.likes-=1;
-    this.currentlyLiked=true;
+    this.currentlyLiked=false;
     $http({
       method: 'PUT',
       url: '/users/'+this.loggedInUserData._id,

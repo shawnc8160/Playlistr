@@ -152,8 +152,8 @@
         <h1>{{ctrl.playlist.name}}</h1>
         <div class = "likes-container">
           <div class="likes-counter">likes: {{ctrl.playlist.likes}}</div>
-          <button ng-if="ctrl.currentlyLiked && ctrl.loggedInUserData" ng-click="ctrl.likePlaylist()" class="btn btn-light btn-xs">Like</button>
-          <button ng-if="!ctrl.currentlyLiked && ctrl.loggedInUserData" ng-click="ctrl.unlikePlaylist()" class="btn btn-light btn-xs">Unlike</button>
+          <button ng-if="!ctrl.currentlyLiked && ctrl.loggedInUserData" ng-click="ctrl.likePlaylist()" class="btn btn-light btn-xs">Like</button>
+          <button ng-if="ctrl.currentlyLiked && ctrl.loggedInUserData" ng-click="ctrl.unlikePlaylist()" class="btn btn-light btn-xs">Unlike</button>
         </div>
         <!-- Add track section, only visible if you click the button -->
         <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username">Add Track</button>
