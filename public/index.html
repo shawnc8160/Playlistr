@@ -15,17 +15,47 @@
 
     <div class="container">
 
+      <div ng-if="!ctrl.loggedInUserData" class="menu-container">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#signUpCollapse" aria-expanded="false" aria-controls="signUpCollapse">Sign Up</button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#loginCollapse" aria-expanded="false" aria-controls="loginCollapse">Login</button>
+      </div>
+      <div ng-if="ctrl.loggedInUserData" class="btn-logout menu-container">
+        <form ng-submit="ctrl.logOutUser()" method="POST">
+          <input type="submit" value="Logout"/>
+        </form>
+      </div>
+
+      <div class="collapse" id="signUpCollapse">
+        <div class="login-container">
+          <form ng-if="!ctrl.loggedInUserData" name="signUpForm" ng-submit="ctrl.createUser()">
+            <input data-id="create-user" type="text" placeholder=" Create Username" ng-model="ctrl.username" />
+            <input data-id="create-password" type="password" placeholder="Create Password" ng-model="ctrl.password" />
+            <input type="submit" value="Sign Up" />
+          </form>
+        </div>
+      </div>
+      <div class="collapse" id="loginCollapse">
+        <div class="login-container">
+          <form ng-if="!ctrl.loggedInUserData" name="loginForm" ng-submit="ctrl.logIn()">
+            <input type="text" placeholder="Username" ng-model="ctrl.loginUsername" />
+            <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
+            <input type="submit" value="Login" />
+          </form>
+        </div>
+      </div>
+
+
       <div class="main container" ng-if="!ctrl.viewDetails">
         <h1 class="display-4">{{ctrl.h1}}</h1>
 
 
         <!-- create user -->
-        <h2 ng-if="!ctrl.loggedInUserData">Sign Up</h2>
+        <!-- <h2 ng-if="!ctrl.loggedInUserData">Sign Up</h2>
         <form ng-if="!ctrl.loggedInUserData" name="signUpForm" ng-submit="ctrl.createUser()">
           <input data-id="create-user" type="text" placeholder=" Create Username" ng-model="ctrl.username" />
           <input data-id="create-password" type="password" placeholder="Create Password" ng-model="ctrl.password" />
           <input type="submit" value="Sign Up" />
-        </form>
+        </form> -->
 
         <!-- <button class="btn btn-primary createuserbutton" type="button" data-toggle="collapse" data-target="createuser">Sign Up</button>
         <div class="collapse" id="createuser">
@@ -40,26 +70,22 @@
               </form>
             </div> -->
 
-        <br>
-
         <!-- Login user -->
-        <h2 ng-if="!ctrl.loggedInUserData">Login</h2>
+        <!-- <h2 ng-if="!ctrl.loggedInUserData">Login</h2>
         <form ng-if="!ctrl.loggedInUserData" name="loginForm" ng-submit="ctrl.logIn()">
           <input type="text" placeholder="Username" ng-model="ctrl.loginUsername" />
           <input type="password" placeholder="Password" ng-model="ctrl.loginPassword" />
           <input type="submit" value="Login" />
-        </form>
-
-        <br>
+        </form> -->
 
 
         <!-- logout user -->
 
-        <div class="btn-logout">
+        <!-- <div class="btn-logout">
           <form ng-if="ctrl.loggedInUserData" ng-submit="ctrl.logOutUser()" method="POST">
             <input type="submit" value="Logout"/>
           </form>
-        </div>
+        </div> -->
 
         <!-- Create Playlist Section -->
         <div class="create_playlist" ng-if="ctrl.loggedInUserData">
@@ -73,11 +99,36 @@
         <br>
 
         <!-- Creates List of All Playlist -->
-        <div ng-if="!ctrl.addTrack">
-          <h2>All Playlists</h2>
+        <!-- <div ng-if="!ctrl.addTrack">
+          <div ng-if="ctrl.loggedInUserData" class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary">My Playlist</button>
+            <button type="button" class="btn btn-secondary">All Playlist</button>
+            <button type="button" class="btn btn-secondary">Favorites</button>
+          </div>
           <label for="Search">
             Search <input type='text' placeholder='' ng-model='searchBox'>
-          </label>
+          </label> -->
+
+          <nav class="navbar navbar-light bg-light">
+            <!-- <div class="collapse navbar-collapse" id="navbarText"> -->
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">My Playlists</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">All Playlists</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Favorites</a>
+                </li>
+              </ul>
+            <!-- </div> -->
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" ng-model='searchBox'>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="reset" ng-click="searchBox = ''">Reset</button>
+            </form>
+          </nav>
+
           <div class="playlist_preview_container">
 
             <div ng-repeat="playlist in ctrl.playlists  | filter: searchBox" class="card" style="width: 9rem;">
