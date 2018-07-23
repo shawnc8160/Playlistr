@@ -152,7 +152,7 @@
         <h1>{{ctrl.playlist.name}}</h1>
 
         <!-- Add track section, only visible if you click the button -->
-        <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection">Add Track</button>
+        <button class="btn btn-primary addtrackbutton" type="button" data-toggle="collapse" data-target="#addTrackSection" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username">Add Track</button>
         <div class="collapse" id="addTrackSection">
           <div class="track-search-section">
             <div class="track-search-form">
@@ -200,7 +200,7 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ track.title }}</td>
             <td>{{ track.artist }}</td>
-            <td><button class="btn btn-primary btn-xs" ng-click="ctrl.deleteTrack(ctrl.playlist._id, track._id)">Remove Track</button></td>
+            <td><button class="btn btn-primary btn-xs" ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username" ng-click="ctrl.deleteTrack(ctrl.playlist._id, track._id)">Remove Track</button></td>
           </tr>
         </table>
         <button ng-click="ctrl.viewDetails = false" class="btn btn-primary btn-sm">Go Back</button>
