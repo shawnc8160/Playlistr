@@ -204,7 +204,7 @@
           </tr>
         </table>
         <button ng-click="ctrl.viewDetails = false" class="btn btn-primary btn-sm">Go Back</button>
-        <button ng-click="ctrl.deletePlaylist(playlist)" class="btn btn-primary btn-sm">Delete Playlist</button>
+        <button ng-if="ctrl.playlist.creator === ctrl.loggedInUserData.username" ng-click="ctrl.deletePlaylist(playlist)" class="btn btn-primary btn-sm">Delete Playlist</button>
       </div>
 
       <!-- All content should go above this point -->
