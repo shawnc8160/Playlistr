@@ -31,6 +31,7 @@ app.controller('MainController', ['$http', function($http){
    --------------------- */
   // Makes HTTP request to create new playlist
   this.createPlaylist = () => {
+    this.createForm.creator = this.loggedInUserData.username;
     console.log('Angular - Calling createPlayList');
     $http({
       method: 'POST',
