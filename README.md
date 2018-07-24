@@ -4,6 +4,8 @@ Playlistr is an app for creating customizable and social playlist. It uses the L
 
 It was built using HTML, CSS, JavaScript, and MEAN Stack. 
 
+It is deployed on heroku at: https://csa-music-app.herokuapp.com/
+
 # Additional Strecth Goals 
 
 Playable links in the playlist. 

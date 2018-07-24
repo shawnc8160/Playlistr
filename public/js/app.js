@@ -4,7 +4,7 @@ app.controller('MainController', ['$http', function($http){
   /* ---------------------
   Global variables
    --------------------- */
-  this.h1 = 'Playlist App'
+  this.h1 = 'Playlistr'
   this.playlist = {}
   this.playlists = []
   this.newPlayListName = ''
