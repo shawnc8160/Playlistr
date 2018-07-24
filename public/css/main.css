@@ -28,7 +28,7 @@ input{
 }
 
 
-input[type="submit"]{
+input[type="submit"], .done{
   border: none;
   background-color:#f78c52;
   font-family: 'Roboto Mono', monospace;
