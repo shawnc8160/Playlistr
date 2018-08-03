@@ -1,4 +1,4 @@
-# Project_3
+# Playlistr 
 
 Playlistr is an app for creating customizable and social playlist. It uses the Last.fm API to search from a catalog and music and features a filter to allow you to serach for specific keywords in titles or artists. 
 
